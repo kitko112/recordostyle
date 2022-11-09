@@ -23,4 +23,4 @@ jobs:
         aws-region: us-east-2
 
     - run: aws s3 cp dist/* s3://recordostyle.com
-        shell: bash
+      shell: bash
