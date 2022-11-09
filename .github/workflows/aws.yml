@@ -22,5 +22,5 @@ jobs:
         role-to-assume: arn:aws:iam::118186523911:role/recordostyle-github-assume-role
         aws-region: us-east-2
 
-    - run: aws s3 cp dist/* s3://recordostyle.com
+    - run: aws s3 sync ./dist s3://recordostyle.com
       shell: bash
