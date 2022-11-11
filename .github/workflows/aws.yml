@@ -1,4 +1,4 @@
-name: Deploy to Amazon S3
+name: Deploy Recordostyle's Website
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: arn:aws:iam::118186523911:role/recordostyle-github-assume-role
-        aws-region: us-east-2
+        aws-region: us-east-1
 
     - run: aws s3 sync ./dist s3://recordostyle.com
       shell: bash
