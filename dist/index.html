@@ -144,11 +144,11 @@
 <script>
   function onSubmit(){
 
-    fetch('https://api.recordostyle.com/v1/inquiry', {
+    fetch('https://c53yn8o2ki.execute-api.us-east-1.amazonaws.com/prod/inquiry', {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({'message': 'Testing from browser locally'})
     })
