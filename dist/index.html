@@ -141,7 +141,22 @@
   </style>
   <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
   <script type="text/javascript" crossorigin="anonymous" nomodule="nomodule" src="./legacy.js"></script>
+<script>
+  function onSubmit(){
 
+    fetch('https://api.recordostyle.com/v1/inquiry', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({'message': 'Testing from browser locally'})
+    })
+      .then((response) => console.log(response))
+      // .then((data) => console.log(data));
+  }
+  
+</script>
 
   <link rel="stylesheet" type="text/css" href="./commerce-42e904b2189a7c1684dd6-min.en-US.css">
   <script
@@ -320,9 +335,7 @@
                           <div class="form-wrapper">
 
                             <div class="form-inner-wrapper">
-                              <form data-form-id="5e7f5fa7f59fd514a17cfcc5" data-success-redirect=""
-                                data-dynamic-strings="" autocomplete="on" method="POST" action="" novalidate=""
-                                onsubmit="">
+                              <!-- <form data-form-id="5e7f5fa7f59fd514a17cfcc5"  action="onSubmit()" > -->
 
                                 <div class="field-list clear">
                                   <fieldset id="name-yui_3_17_2_1_1595773047192_15410" class="form-item fields name">
@@ -497,14 +510,14 @@
                                 <div data-animation-role="button" class="form-button-wrapper form-button-wrapper--align-left">
                                   <input
                                     class="button sqs-system-button sqs-editable-button sqs-button-element--primary"
-                                    type="submit" value="Submit">
+                                    type="submit" value="Submit" onclick="onSubmit()" >
                                 </div>
                                 <div class="hidden form-submission-text">
                                   <p class="">Thank you for considering to collaborate with us! We will reply you as
                                     soon as possible. </p>
                                 </div>
                                 <div class="hidden form-submission-html" data-submission-html=""></div>
-                              </form>
+                              <!-- </form> -->
                             </div>
                           </div>
                         </div>
