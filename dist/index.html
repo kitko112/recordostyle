@@ -143,29 +143,41 @@
   <script type="text/javascript" crossorigin="anonymous" nomodule="nomodule" src="./legacy.js"></script>
 <script>
 
+  function showErrorStyle(eleId) {
+    const ele = document.getElementById(eleId);
+    ele.classList.add("error");
+  }
+  function removeErrorStyle(eleId) {
+    const ele = document.getElementById(eleId);
+    ele.classList.remove("error")
+  }
+
   function getValidatedPayload(){
     const checkboxEles = document.getElementsByName("checkbox-yui_3_17_2_1_1599123023200_69718-field");
     const checkedServices = [...checkboxEles]
       .filter(ele => ele.checked)
       .map(ele => ele.value);
-    // TODO: error if nothing checked
     if(checkedServices.length === 0) {
+      showErrorStyle("checkbox-yui_3_17_2_1_1599123023200_69718");
       return;
     }
+    removeErrorStyle("checkbox-yui_3_17_2_1_1599123023200_69718");
 
     const emailEle = document.getElementById("email-yui_3_17_2_44_1494363108127_13627-field");
     const email = emailEle.value;
-    // TODO: error if email is not givin
     if(!email) {
+      showErrorStyle("email-yui_3_17_2_44_1494363108127_13627");
       return;
     }
+    removeErrorStyle("email-yui_3_17_2_44_1494363108127_13627");
 
     const phoneEle = document.getElementById("phone-number");
     const phone = phoneEle.value;
-    // TODO: error if phone is not givin
     if(!phone) {
+      showErrorStyle("phone-yui_3_17_2_1_1494426459568_12124");
       return;
     }
+    removeErrorStyle("phone-yui_3_17_2_1_1494426459568_12124");
 
     const firstNameEle = document.getElementById("fname");
     const firstName = firstNameEle.value;
@@ -184,7 +196,7 @@
       "\n" +
       "First Name: " + firstName + "\n\n" +
       "Last Name: " + lastName + "\n\n" +
-      "Project Description" + desc + "\n\n" +
+      "Project Description: " + desc + "\n\n" +
       "Required Services: " + checkedServices.join(', ') + "\n\n" +
       "Your Budget ( USD ): " + budget + "\n\n" +
       "Expected Deadline ( approximately ): " + deadline + "\n\n" +
