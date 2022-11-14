@@ -142,18 +142,55 @@
   <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
   <script type="text/javascript" crossorigin="anonymous" nomodule="nomodule" src="./legacy.js"></script>
 <script>
-  function onSubmit(){
 
-    fetch('https://api.recordostyle.com/v1/inquiry', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({'message': 'Testing from browser locally'})
-    })
-      .then((response) => console.log(response))
-      // .then((data) => console.log(data));
+  function getValidatedPayload(){
+    const checkboxEles = document.getElementsByName("checkbox-yui_3_17_2_1_1599123023200_69718-field");
+    const checkedServices = [...checkboxEles]
+      .filter(ele => ele.checked)
+      .map(ele => ele.value);
+    // TODO: error if nothing checked
+    if(checkedServices.length === 0) {
+      return;
+    }
+
+    const emailEle = document.getElementById("email-yui_3_17_2_44_1494363108127_13627-field");
+    const email = emailEle.value;
+    // TODO: error if email is not givin
+    if(!email) {
+      return;
+    }
+
+    const phoneEle = document.getElementById("phone-number");
+    const phone = phoneEle.value;
+    // TODO: error if phone is not givin
+    if(!phone) {
+      return;
+    }
+
+    const payload = 
+      "Checked Services: " + checkedServices.join(', ') + "\n" +
+      "Email: " + email + "\n" + 
+      "Phone: " + phone + "\n";
+
+    return payload;
+  }
+
+  function onSubmit(){
+    const payload = getValidatedPayload();
+
+    if(payload){
+        fetch('https://api.recordostyle.com/v1/inquiry', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          // body: JSON.stringify({'message': 'Testing from browser locally'})
+          body: payload
+        })
+          .then((response) => {console.log(response)})
+    }
+    
   }
   
 </script>
@@ -463,15 +500,15 @@
 
                                     </legend>
 
-                                    <div class="field text two-digits">
+                                    <div class="field text">
                                       <label class="caption">
                                         <input class="field-element" x-autocompletetype="phone-country-code" type="text"
-                                          maxlength="5" data-title="Country" aria-required="true">
-                                        <span class="caption-text">Country</span>
+                                          maxlength="20" data-title="with country code" id="phone-number" aria-required="true">
+                                        <span class="caption-text"></span>
                                       </label>
                                     </div>
 
-                                    <div class="field text three-digits">
+                                    <!-- <div class="field text three-digits">
                                       <label class="caption">
                                         <input class="field-element" x-autocompletetype="phone-area-code" type="text"
                                           maxlength="3" data-title="Areacode" aria-required="true">
@@ -491,7 +528,7 @@
                                           maxlength="4" data-title="Line" aria-required="true">
                                         <span class="caption-text">####</span>
                                       </label>
-                                    </div>
+                                    </div> -->
                                   </fieldset>
 
                                   <div id="text-yui_3_17_2_1_1595773047192_33023" class="form-item field text">
