@@ -167,10 +167,30 @@
       return;
     }
 
+    const firstNameEle = document.getElementById("fname");
+    const firstName = firstNameEle.value;
+    const lastNameEle = document.getElementById("lname");
+    const lastName = lastNameEle.value;
+    const descEle = document.getElementById("textarea-yui_3_17_2_1_1595773047192_23571-field");
+    const desc = descEle.value;
+    const budgetEle = document.getElementById("text-yui_3_17_2_1_1599123023200_83477-field");
+    const budget = budgetEle.value;
+    const deadlineEle = document.getElementById("text-yui_3_17_2_1_1599123023200_111568-field");
+    const deadline = deadlineEle.value;
+    const referrerEle = document.getElementById("text-yui_3_17_2_1_1595773047192_33023-field");
+    const referrer = referrerEle.value;
+
     const payload = 
-      "Checked Services: " + checkedServices.join(', ') + "\n" +
-      "Email: " + email + "\n" + 
-      "Phone: " + phone + "\n";
+      "\n" +
+      "First Name: " + firstName + "\n\n" +
+      "Last Name: " + lastName + "\n\n" +
+      "Project Description" + desc + "\n\n" +
+      "Required Services: " + checkedServices.join(', ') + "\n\n" +
+      "Your Budget ( USD ): " + budget + "\n\n" +
+      "Expected Deadline ( approximately ): " + deadline + "\n\n" +
+      "Email: " + email + "\n\n" + 
+      "Phone: " + phone + "\n\n" +
+      "Referrer's Name: " + referrer;
 
     return payload;
   }
@@ -185,10 +205,8 @@
           headers: {
             "Content-Type": "application/json"
           },
-          // body: JSON.stringify({'message': 'Testing from browser locally'})
           body: payload
         })
-          .then((response) => {console.log(response)})
     }
     
   }
@@ -385,7 +403,7 @@
 
                                     <div class="field first-name">
                                       <label class="caption">
-                                        <input class="field-element field-control" name="fname"
+                                        <input class="field-element field-control" name="fname" id="fname"
                                           x-autocompletetype="given-name" type="text" spellcheck="false" maxlength="30"
                                           data-title="First">
                                         <span class="caption-text">First Name</span>
@@ -393,7 +411,7 @@
                                     </div>
                                     <div class="field last-name">
                                       <label class="caption">
-                                        <input class="field-element field-control" name="lname"
+                                        <input class="field-element field-control" name="lname" id="lname"
                                           x-autocompletetype="surname" type="text" spellcheck="false" maxlength="30"
                                           data-title="Last">
                                         <span class="caption-text">Last Name</span>
